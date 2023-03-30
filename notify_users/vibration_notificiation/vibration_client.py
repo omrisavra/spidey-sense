@@ -41,8 +41,7 @@ class VibrationClient(object):
                     self.logger.debug("Should stop motor, stopping it...")
                     self._vibration_motor.stop()
                 else:
-                    self.logger.warning(f"Got unexpected response from server: {response.content}")
-                    self._vibration_motor.stop()
+                    raise ValueError(f"Got unexpected response from server: {response.content}")
         except KeyboardInterrupt:
             self.logger.info("Manually stopped")
         finally:
