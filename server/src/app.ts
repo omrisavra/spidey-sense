@@ -19,13 +19,13 @@ let isNotified = false;
 
 
 app.get('/notify', (req, res, next) => {
-    res.send(isNotified ? "alert!!!!!" : "good")
+    res.send(isNotified ? "true" : "false")
     next()
 })
 
 app.post('/notify', (req, res, next) => {
     isNotified = true;
-    res.send(isNotified ? "alert!!!!!" : "good")
+    res.send("sent")
     next()
 })
 
