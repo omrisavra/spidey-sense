@@ -65,3 +65,4 @@ if __name__ == "__main__":
     parser.add_argument("--pin-id", default=18, type=int, help="The GPIO pin id")
     args = parser.parse_args()
     client = VibrationClient(rpi_motor_pin_id=args.pin_id, server_url=args.server, polling_interval=args.interval)
+    client.start()
