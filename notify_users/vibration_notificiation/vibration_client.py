@@ -18,18 +18,24 @@ class VibrationClient(object):
         self._is_running = False
 
     def start(self):
+        self.logger.info("Starting vibration client")
         self._is_running = True
         while self._is_running:
+            self.logger.debug(f"Checking server")
             self.check_server()
+            self.logger.debug(f"Sleeping for {self._polling_interval}")
             time.sleep(self._polling_interval)
 
     def check_server(self):
         try:
+            self.logger.debug(f"Sending a get reqeust to {self.NOTIFY_URL.format(server_url=self._server_url)}")
             response = requests.get(self.NOTIFY_URL.format(server_url=self._server_url))
             if response.ok:
                 if response.content == self.SHOULD_NOTIFY:
+                    self.logger.debug("Should start motor, starting it...")
                     self._vibration_motor.start()
                 elif response.content == self.SHOULD_NOT_NOTIFY:
+                    self.logger.debug("Should stop motor, stopping it...")
                     self._vibration_motor.stop()
                 else:
                     self.logger.warning(f"Got unexpected response from server: {response.content}")
@@ -38,7 +44,9 @@ class VibrationClient(object):
             self.close()
 
     def close(self):
+        self.logger.debug("Stopping motor")
         self._vibration_motor.stop()
+        self.logger.info("Stopping vibration client")
         self._is_running = False
 
     def __repr__(self):
