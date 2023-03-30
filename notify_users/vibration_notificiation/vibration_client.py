@@ -1,3 +1,4 @@
+import os
 import time
 import requests
 import logging
@@ -25,10 +26,10 @@ class VibrationClient(object):
         self._is_running = True
         try:
             while self._is_running:
-                    self.logger.debug(f"Checking server")
-                    self.check_server()
-                    self.logger.debug(f"Sleeping for {self._polling_interval}")
-                    time.sleep(self._polling_interval)
+                self.logger.debug(f"Checking server")
+                self.check_server()
+                self.logger.debug(f"Sleeping for {self._polling_interval}")
+                time.sleep(self._polling_interval)
         except KeyboardInterrupt:
             self.logger.info("Manually stopped")
         finally:
@@ -59,7 +60,8 @@ class VibrationClient(object):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Vibration Client')
-    parser.add_argument("-s", "--server", type=str, help="The url of the server, INCLUDING port")
+    parser.add_argument("-s", "--server", default=os.environ.get("SERVER_URL", "localhost:3001"), type=str,
+                        help="The url of the server, INCLUDING port")
     parser.add_argument("-i", "--interval", default=1, type=int, help="How many seconds between polling of the server")
     parser.add_argument("--pin-id", default=18, type=int, help="The GPIO pin id")
     args = parser.parse_args()
