@@ -17,17 +17,15 @@ const port = 3001;
 let isNotified = false;
 
 app.get('/notify', (req, res, next) => {
-  const message = isNotified ? 'alert!!!!!' : 'good';
-  res.send({ message });
-  next();
-});
+    res.send(isNotified ? "true" : "false")
+    next()
+})
 
 app.post('/notify', (req, res, next) => {
-  isNotified = true;
-  const message = isNotified ? 'alert!!!!!' : 'good';
-  res.send({ message });
-  next();
-});
+    isNotified = true;
+    res.send("sent")
+    next()
+})
 
 app.listen(port, function () {
   console.log(`server started and listening on ${port}`);
