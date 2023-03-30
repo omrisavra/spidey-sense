@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import styled from "styled-components";
+import { Button } from 'semantic-ui-react';
 
 const serverAddress = "http://10.10.10.49:3001";
 
@@ -19,8 +20,8 @@ const StyledApp = styled.div<{ isAlerted: boolean }>`
   background-color: ${({ isAlerted }) => (isAlerted ? "red" : "green")};
   display: flex;
   flex-direction: column;
-  align-items: center;
 `
+
 
 
 //create your forceUpdate hook
@@ -45,6 +46,7 @@ const AttackerFeed: React.FC<{isAlerted: boolean}> = ({isAlerted}) => {
   return <StyledImage src={serverAddress + "/img"} alt="Image" />
 }
 
+
 const AlertComponent: React.FC<{ alertText: string }> = ({ alertText }) => {
   return (
     <StyledAlert>
@@ -64,8 +66,29 @@ const App = () => {
     }, 100);
   }, []);
 
+  useEffect(() => {
+    if (isAlerted) {
+      setTimeout(() => {
+        navigator.vibrate([
+          100, 30, 100, 30, 100, 30, 200, 30, 200, 30, 200, 30, 100, 30, 100,
+          30, 100,
+        ]);
+      }, 50);
+    }
+  }, [isAlerted]);
+  
   return (
     <StyledApp isAlerted={isAlerted}>
+    {false && (
+        <Button
+          onClick={() => {
+            navigator.vibrate([
+              100, 30, 100, 30, 100, 30, 200, 30, 200, 30, 200, 30, 100, 30,
+              100, 30, 100,
+            ]);
+          }}
+        />
+      )}
       <AlertComponent alertText={isAlerted ? "Alertttt": "Ok!!!!"} />
       {isAlerted && <AttackerFeed isAlerted={isAlerted}/>}
     </StyledApp>
