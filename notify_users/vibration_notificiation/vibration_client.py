@@ -1,6 +1,7 @@
 import time
 import requests
 import logging
+import argparse
 from vibration_motor import VibrationMotor
 
 
@@ -40,6 +41,8 @@ class VibrationClient(object):
                 else:
                     self.logger.warning(f"Got unexpected response from server: {response.content}")
                     self._vibration_motor.stop()
+        except KeyboardInterrupt:
+            self.logger.info("Manually stopped")
         finally:
             self.close()
 
@@ -51,3 +54,12 @@ class VibrationClient(object):
 
     def __repr__(self):
         return "<VibrationClient:{self._rpi_motor_pin_id}@{self._server_url}>"
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Vibration Client')
+    parser.add_argument("-s", "--server", type=str, help="The url of the server, INCLUDING port")
+    parser.add_argument("-i", "--interval", default=1, type=int, help="How many seconds between polling of the server")
+    parser.add_argument("--pin-id", default=18, type=int, help="The GPIO pin id")
+    args = parser.parse_args()
+    client = VibrationClient(rpi_motor_pin_id=args.pin_id, server_url=args.server, polling_interval=args.interval)
