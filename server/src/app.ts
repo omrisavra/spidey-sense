@@ -1,28 +1,32 @@
-import restify, { createServer, plugins } from "restify";
+import { createServer, plugins } from "restify";
+import corsMiddleware from "restify-cors-middleware";
+
+const cors = corsMiddleware({
+    origins: ["*"],
+    allowHeaders: ["*"],
+    exposeHeaders: ["*"],
+  });
+  
 
 const app = createServer();
+app.pre(cors.preflight);
+app.use(cors.actual);
+app.use(plugins.jsonBodyParser());
 
 const port = 3001;
 
 let isNotified = false;
 
-app.use(plugins.jsonBodyParser());
-app.use(plugins.gzipResponse());
-
 
 app.get('/notify', (req, res, next) => {
-    // res.set('Access-Control-Allow-Origin', '*');
-    res.header("Access-Control-Allow-Origin", "*");
     res.send(isNotified ? "alert!!!!!" : "good")
-    return next()
+    next()
 })
 
 app.post('/notify', (req, res, next) => {
     isNotified = true;
-    // res.set('Access-Control-Allow-Origin', '*');
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send("notified")
-    return next()
+    res.send(isNotified ? "alert!!!!!" : "good")
+    next()
 })
 
 app.listen(port, function () {
