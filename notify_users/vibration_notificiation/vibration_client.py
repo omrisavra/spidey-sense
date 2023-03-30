@@ -12,6 +12,8 @@ class VibrationClient(object):
 
     def __init__(self, rpi_motor_pin_id, server_url, polling_interval=1):
         self.logger = logging.getLogger(str(self))
+        self.logger.addHandler(logging.StreamHandler())
+        self.logger.setLevel(logging.DEBUG)
         self._rpi_motor_pin_id = rpi_motor_pin_id
         self._vibration_motor = VibrationMotor(self._rpi_motor_pin_id)
         self._server_url = server_url

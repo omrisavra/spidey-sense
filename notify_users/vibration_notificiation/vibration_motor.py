@@ -7,6 +7,8 @@ class VibrationMotor(object):
         self._gpio_pin_id = gpio_pin_id
         self._is_running = False
         self.logger = logging.getLogger(str(self))
+        self.logger.setLevel(logging.DEBUG)
+        self.logger.addHandler(logging.StreamHandler())
         self.logger.debug("Setting up PI...")
         self.logger.debug("Setting up device mode as BCM")
         GPIO.setmode(GPIO.BCM)
