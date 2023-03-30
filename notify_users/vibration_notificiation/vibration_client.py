@@ -23,29 +23,29 @@ class VibrationClient(object):
     def start(self):
         self.logger.info("Starting vibration client")
         self._is_running = True
-        while self._is_running:
-            self.logger.debug(f"Checking server")
-            self.check_server()
-            self.logger.debug(f"Sleeping for {self._polling_interval}")
-            time.sleep(self._polling_interval)
-
-    def check_server(self):
         try:
-            self.logger.debug(f"Sending a get reqeust to {self.NOTIFY_URL.format(server_url=self._server_url)}")
-            response = requests.get(self.NOTIFY_URL.format(server_url=self._server_url))
-            if response.ok:
-                if response.content == self.SHOULD_NOTIFY:
-                    self.logger.debug("Should start motor, starting it...")
-                    self._vibration_motor.start()
-                elif response.content == self.SHOULD_NOT_NOTIFY:
-                    self.logger.debug("Should stop motor, stopping it...")
-                    self._vibration_motor.stop()
-                else:
-                    raise ValueError(f"Got unexpected response from server: {response.content}")
+            while self._is_running:
+                    self.logger.debug(f"Checking server")
+                    self.check_server()
+                    self.logger.debug(f"Sleeping for {self._polling_interval}")
+                    time.sleep(self._polling_interval)
         except KeyboardInterrupt:
             self.logger.info("Manually stopped")
         finally:
             self.close()
+
+    def check_server(self):
+        self.logger.debug(f"Sending a get reqeust to {self.NOTIFY_URL.format(server_url=self._server_url)}")
+        response = requests.get(self.NOTIFY_URL.format(server_url=self._server_url))
+        if response.ok:
+            if response.content == self.SHOULD_NOTIFY:
+                self.logger.debug("Should start motor, starting it...")
+                self._vibration_motor.start()
+            elif response.content == self.SHOULD_NOT_NOTIFY:
+                self.logger.debug("Should stop motor, stopping it...")
+                self._vibration_motor.stop()
+            else:
+                raise ValueError(f"Got unexpected response from server: {response.content}")
 
     def close(self):
         self.logger.debug("Stopping motor")
