@@ -1,12 +1,11 @@
-import { createServer, plugins } from "restify";
-import corsMiddleware from "restify-cors-middleware";
+import { createServer, plugins } from 'restify';
+import corsMiddleware from 'restify-cors-middleware';
 
 const cors = corsMiddleware({
-    origins: ["*"],
-    allowHeaders: ["*"],
-    exposeHeaders: ["*"],
-  });
-  
+  origins: ['*'],
+  allowHeaders: ['*'],
+  exposeHeaders: ['*'],
+});
 
 const app = createServer();
 app.pre(cors.preflight);
@@ -17,18 +16,19 @@ const port = 3001;
 
 let isNotified = false;
 
-
 app.get('/notify', (req, res, next) => {
-    res.send(isNotified ? "alert!!!!!" : "good")
-    next()
-})
+  const message = isNotified ? 'alert!!!!!' : 'good';
+  res.send({ message });
+  next();
+});
 
 app.post('/notify', (req, res, next) => {
-    isNotified = true;
-    res.send(isNotified ? "alert!!!!!" : "good")
-    next()
-})
+  isNotified = true;
+  const message = isNotified ? 'alert!!!!!' : 'good';
+  res.send({ message });
+  next();
+});
 
 app.listen(port, function () {
-    console.log(`server started and listening on ${port}`);
- })
+  console.log(`server started and listening on ${port}`);
+});
