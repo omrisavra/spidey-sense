@@ -7,8 +7,8 @@ from vibration_motor import VibrationMotor
 
 class VibrationClient(object):
     NOTIFY_URL = "http://{server_url}/notify"
-    SHOULD_NOTIFY = "true"
-    SHOULD_NOT_NOTIFY = "false"
+    SHOULD_NOTIFY = b'"true"'
+    SHOULD_NOT_NOTIFY = b'"false"'
 
     def __init__(self, rpi_motor_pin_id, server_url, polling_interval=1):
         self.logger = logging.getLogger(str(self))
