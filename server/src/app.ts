@@ -1,4 +1,4 @@
-import { createServer, plugins } from 'restify';
+import restify, { createServer, plugins } from 'restify';
 import corsMiddleware from 'restify-cors-middleware';
 
 const cors = corsMiddleware({
@@ -11,6 +11,7 @@ const app = createServer();
 app.pre(cors.preflight);
 app.use(cors.actual);
 app.use(plugins.jsonBodyParser());
+app.use(restify.plugins.queryParser());
 
 const port = 3001;
 
@@ -22,7 +23,15 @@ app.get('/notify', (req, res, next) => {
 })
 
 app.post('/notify', (req, res, next) => {
-    isNotified = true;
+    if (req.query.alert == 1){
+        isNotified = true;
+        console.log("setting alert to true")
+    }
+    else { 
+        isNotified = false
+        console.log("setting alert to false")
+    }
+
     res.send("sent")
     next()
 })

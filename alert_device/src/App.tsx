@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const serverAddress = 'http://10.10.10.49:3001/notify';
+const serverAddress = 'http://localhost:3001/notify';
 
 const StyledAlert = styled.div<{isAlerted: boolean}>`
   height: 100vh;
