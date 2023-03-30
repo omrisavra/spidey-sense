@@ -6,7 +6,7 @@ from vibration_motor import VibrationMotor
 
 
 class VibrationClient(object):
-    NOTIFY_URL = "{server_url}/notify"
+    NOTIFY_URL = "http://{server_url}/notify"
     SHOULD_NOTIFY = "true"
     SHOULD_NOT_NOTIFY = "false"
 
