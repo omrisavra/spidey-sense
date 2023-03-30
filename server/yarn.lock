@@ -75,7 +75,15 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.15.11.tgz#b3b790f09cb1696cffcec605de025b088fa4225f"
   integrity sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==
 
-"@types/restify@^8.5.6":
+"@types/restify-cors-middleware@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/restify-cors-middleware/-/restify-cors-middleware-1.0.2.tgz#5c9b9743e7c60fbb8b21b3d20c04b342056a4d39"
+  integrity sha512-lYQpemKNNl3BFnGyMHA8T3l1jgrMTwh+bAjaXaNxS1YFbRYlsHmh3HYZKqnNMopnZBqpfi5qbVqMzPcZw2rPxA==
+  dependencies:
+    "@types/node" "*"
+    "@types/restify" "*"
+
+"@types/restify@*", "@types/restify@^8.5.6":
   version "8.5.6"
   resolved "https://registry.yarnpkg.com/@types/restify/-/restify-8.5.6.tgz#40c41ddebc7080cbae707254e3984a9400c4a02a"
   integrity sha512-e2MOgZjrJkqr3sHGTLh+rMOC8Sl+wmnAYFykPVjw6KIU46/vZpsHEbG1NFHjAxWad3L7gefjPyJBduThByF64Q==
@@ -718,6 +726,13 @@ real-require@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/real-require/-/real-require-0.2.0.tgz#209632dea1810be2ae063a6ac084fee7e33fba78"
   integrity sha512-57frrGM/OCTLqLOAh0mhVA9VBMHd+9U7Zb2THMGdBUoZVOtGbJzjxsYGDJ3A9AYYCP4hn6y1TVbaOfzWtm5GFg==
+
+restify-cors-middleware@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/restify-cors-middleware/-/restify-cors-middleware-1.1.1.tgz#06688502fa08b8c62783103844c87dcfc30dcf3e"
+  integrity sha512-yh/TnX0/T8cejOFRK8iinwDSexPOJ6RmlM8gwj2/Fk8XlGew4ldi0Db0444KT6S6BqlD61709xbxEh0oKlbkOg==
+  dependencies:
+    assert-plus "^1.0.0"
 
 restify-errors@^8.0.2:
   version "8.0.2"
