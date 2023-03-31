@@ -93,6 +93,11 @@
     "@types/node" "*"
     "@types/spdy" "*"
 
+"@types/sleep@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@types/sleep/-/sleep-0.0.9.tgz#a4d6ebbc09bb3ef9a5702e7c967f00a953edd3bb"
+  integrity sha512-Y0/2tEgjtgxqr8t8vbSdvIpu/1w2q+HaieCmiKBgRnosXty6yl3RyEi+HLxpbCDbdr4wSD5q8q+Kz2zxn9MJ/w==
+
 "@types/spdy@*":
   version "3.4.5"
   resolved "https://registry.yarnpkg.com/@types/spdy/-/spdy-3.4.5.tgz#194dc132312ddcd31e8053789ae83a7bb32a8aaf"
@@ -558,7 +563,7 @@ ms@2.1.3:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-nan@^2.14.0:
+nan@^2.14.0, nan@^2.14.1:
   version "2.17.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.17.0.tgz#c0150a2368a182f033e9aa5195ec76ea41a199cb"
   integrity sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==
@@ -867,6 +872,13 @@ side-channel@^1.0.4:
     call-bind "^1.0.0"
     get-intrinsic "^1.0.2"
     object-inspect "^1.9.0"
+
+sleep@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/sleep/-/sleep-6.3.0.tgz#c524e0e6d8d2e45d3f14e0ba5650fbe45f2ae876"
+  integrity sha512-+WgYl951qdUlb1iS97UvQ01pkauoBK9ML9I/CMPg41v0Ze4EyMlTgFTDDo32iYj98IYqxIjDMRd+L71lawFfpQ==
+  dependencies:
+    nan "^2.14.1"
 
 sonic-boom@^3.1.0:
   version "3.3.0"
