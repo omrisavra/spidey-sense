@@ -22,32 +22,21 @@ const StyledApp = styled.div<{ isAlerted: boolean }>`
   flex-direction: column;
 `
 
-
-
-//create your forceUpdate hook
-function useForceUpdate(){
-  const [, setValue] = useState(0); // integer state
-  return () => setValue(value => value + 1); // update state to force render
-  // A function that increment 👆🏻 the previous state like here 
-  // is better than directly setting `setValue(value + 1)`
-}
-
 const StyledImage = styled.img`
   filter: hue-rotate(-45deg);
 
 `
 
 const AttackerFeed: React.FC<{isAlerted: boolean}> = ({isAlerted}) => {
-  const forceUpdate = useForceUpdate();
-  useEffect(() => {
-    forceUpdate()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAlerted])
-  return <StyledImage src={serverAddress + "/img"} alt="Image" />
+  const [randomNumber, setRandomNumber] = useState(0)
+  setInterval(async () => {
+    setRandomNumber(Math.floor(Math.random() * 1000) + 1)
+  }, 1_000)
+  return <StyledImage src={serverAddress + "/img?generated=" + randomNumber} alt="Image" />
 }
 
 
-const AlertComponent: React.FC<{ alertText: string }> = ({ alertText }) => {
+const Alert: React.FC<{ alertText: string }> = ({ alertText }) => {
   return (
     <StyledAlert>
       <StyledText>{alertText}</StyledText>
@@ -89,7 +78,7 @@ const App = () => {
           }}
         />
       )}
-      <AlertComponent alertText={isAlerted ? "Alertttt": "Ok!!!!"} />
+      <Alert alertText={isAlerted ? "Spideyyyy sense something!!!": "Safe!!!!"} />
       {isAlerted && <AttackerFeed isAlerted={isAlerted}/>}
     </StyledApp>
   );
