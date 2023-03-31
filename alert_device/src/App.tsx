@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { Button } from 'semantic-ui-react';
 
-const serverAddress = "http://10.10.10.49:3001";
+const serverAddress = "http://10.10.10.81:3001";
 
 const StyledAlert = styled.div`
   display: flex;
