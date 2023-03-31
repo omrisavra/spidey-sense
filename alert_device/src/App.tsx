@@ -36,11 +36,11 @@ const StyledImage = styled.img`
 `
 
 const AttackerFeed: React.FC<{isAlerted: boolean}> = ({isAlerted}) => {
-  const [randomNumber, setRandomNumber] = useState(0)
+  const [timeStamp, setTimeStamp] = useState(0)
   setInterval(async () => {
-    setRandomNumber(Math.floor(Math.random() * 1000) + 1)
+    setTimeStamp(Date.now())
   }, 1_000)
-  return <StyledImage src={serverAddress + "/img?generated=" + randomNumber} alt="Image" />
+  return <StyledImage src={serverAddress + "/img?generated=" + timeStamp} alt="Image" />
 }
 
 const StyledImgSpidey = styled.img`
