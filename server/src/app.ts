@@ -76,7 +76,6 @@ const updateNotifyWatchdog = async () => {
   const resetNotifyTime = 5_000;
   for (;;) {
     const diffTime = Date.now() - lastTimeUpdated;
-    console.log(diffTime)
     if (diffTime > resetNotifyTime) {
       isNotified = false;
     }
