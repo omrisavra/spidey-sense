@@ -1,2 +1,4 @@
 server/node_modules/*
 **.lock
+server/bin
+server/image.jpg
